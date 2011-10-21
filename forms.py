@@ -1,5 +1,8 @@
-from django import forms
+from django.forms import ModelForm
+from bookmarks.models import bookmarks
 
-class new_bookmark(forms.Form):
-	name = forms.CharField(max_length = 100)
-	url = forms.URLField()
+class new_bookmark(ModelForm):
+	class Meta:
+		model = bookmarks
+		exclude = ('user',)
+	 

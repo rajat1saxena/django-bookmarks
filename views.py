@@ -47,3 +47,23 @@ def delete(request,bookmark_id):
 	b=bookmarks.objects.get(pk=bookmark_id)
 	b.delete()
 	return HttpResponseRedirect('/bookmarks/')
+
+def edit(request,bookmark_id):
+	obj = bookmarks.objects.get(pk=bookmark_id)
+	form = new_bookmark(instance = obj)
+	error = ""
+	if request.method == "POST":
+		form = new_bookmark(request.POST)
+		if form.is_valid():
+			user = request.user
+			name = form.cleaned_data['name']
+			url = form.cleaned_data['url']
+			try:
+				obj.name = name
+				obj.url = url
+				obj.save()
+			except IntegrityError:
+				error = "You have already used this name or url"
+				return render_to_response('edit_bookmark.html',{'form':form,'error':error},context_instance=RequestContext(request))
+			return HttpResponseRedirect('/bookmarks/thanks')
+	return render_to_response('edit_bookmark.html',{'form':form,'error':error,'id':bookmark_id},context_instance=RequestContext(request))

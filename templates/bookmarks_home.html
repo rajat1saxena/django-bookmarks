@@ -3,14 +3,14 @@
 	<title>User Bookmarks</title>
 </head>
 <body>
-	<h1>{{ user.username }}</h1>
+	<h1><a href="/loggin/">{{ user.username }}</a></h1>
 	<a href="/loggin/signout">Log out</a>
 	<a href="/bookmarks/new">Save a new bookmark</a>
 	<br>
 	<br>
 	<h3>Your Bookmarks</h3>
 	{% for bookmark in bookmarks %}
-		<li><a href="{{ bookmark.url }}">{{ bookmark.name }}</a> - <a href="/bookmarks/delete/{{ bookmark.id }}">delete</a></li>
+		<li><a href="{{ bookmark.url }}">{{ bookmark.name }}</a> - <a href="/bookmarks/edit/{{ bookmark.id }}">edit</a>|<a href="/bookmarks/delete/{{ bookmark.id }}">delete</a></li>
 	{% endfor %}
 </body>
 </html>

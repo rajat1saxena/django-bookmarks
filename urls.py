@@ -5,4 +5,5 @@ urlpatterns = patterns("",
 				(r'^new/$','bookmarks.views.new'),
 				(r'^thanks/$','bookmarks.views.thanks'),
 				(r'^delete/(?P<bookmark_id>\d+)$','bookmarks.views.delete'),
+				(r'^edit/(?P<bookmark_id>\d+)$','bookmarks.views.edit'),
 				)
