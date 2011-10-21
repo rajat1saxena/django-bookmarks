@@ -1,3 +1,6 @@
+{% if error %}
+	<h1>{{ error }}</h1>
+{% endif %}
 <form action="/bookmarks/new/" method='post'>
 	{% csrf_token %}
 	{{ form.as_p }}
